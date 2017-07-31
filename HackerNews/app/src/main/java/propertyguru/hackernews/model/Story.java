@@ -59,7 +59,7 @@ public class Story implements Parcelable {
         this.title = title;
     }
 
-    public Long getTime() {
+    public long getTime() {
         return time;
     }
 
@@ -67,7 +67,7 @@ public class Story implements Parcelable {
         this.time = time;
     }
 
-    public Long getScore() {
+    public long getScore() {
         return score;
     }
 

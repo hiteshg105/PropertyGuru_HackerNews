@@ -37,14 +37,11 @@ public abstract class NetworkCallback<M> extends Subscriber<M> {
 
     @Override
     public void onNext(M model) {
-//        Log.d(Utils.TAG,"OnNext"+model);
         onSuccess(model);
     }
 
     @Override
     public void onCompleted() {
-//        Log.d(Utils.TAG,"OnCompleteed");
-
         onFinish();
     }
 }

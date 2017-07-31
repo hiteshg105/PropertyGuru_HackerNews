@@ -10,7 +10,7 @@ import java.util.List;
 
 import propertyguru.hackernews.R;
 import propertyguru.hackernews.feature.comments.CommentsActivity;
-import propertyguru.hackernews.feature.home.NewsActivity;
+import propertyguru.hackernews.feature.home.NewsFragment;
 import propertyguru.hackernews.model.Story;
 
 /**
@@ -20,9 +20,9 @@ import propertyguru.hackernews.model.Story;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private List<Story>  listStories;
     private int          rowLayout;
-    private NewsActivity context;
+    private NewsFragment context;
 
-    public NewsAdapter(List<Story> listIds, int rowLayout, NewsActivity context) {
+    public NewsAdapter(List<Story> listIds, int rowLayout, NewsFragment context) {
         this.listStories = listIds;
         this.rowLayout = rowLayout;
         this.context = context;
@@ -63,6 +63,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     int itemPosition = getLayoutPosition();
+
                     context.startActivity(CommentsActivity.getStartIntent(v.getContext(), listStories.get(itemPosition)));
 
                 }

@@ -16,6 +16,7 @@ import java.util.List;
 import propertyguru.hackernews.feature.home.NewsActivity;
 import propertyguru.hackernews.feature.home.NewsPresenter;
 import propertyguru.hackernews.feature.home.NewsView;
+import propertyguru.hackernews.model.Story;
 import propertyguru.hackernews.network.NetworkStores;
 import rx.Observable;
 import rx.Scheduler;
@@ -43,6 +44,9 @@ public class NewsPresenterTest {
     private NewsView      newsView;
 
     private NewsPresenter newsPresenter;
+
+    @Mock
+    private Story         story;
 
     @Before
     public void setup() {
@@ -110,6 +114,9 @@ public class NewsPresenterTest {
         InOrder inOrder = Mockito.inOrder(newsView);
         inOrder.verify(newsView, times(1)).showLoading();
         inOrder.verify(newsView, times(1)).getDataFail(any());
+        inOrder.verify(newsView, times(1)).hideLoading();
 
     }
+
+
 }

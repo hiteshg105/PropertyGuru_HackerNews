@@ -1,12 +1,8 @@
 package propertyguru.hackernews.feature.home;
 
-import android.app.Activity;
-import android.content.Intent;
-
 import java.util.List;
 
 import propertyguru.hackernews.base.ui.BasePresenter;
-import propertyguru.hackernews.feature.comments.CommentsActivity;
 import propertyguru.hackernews.model.Story;
 import propertyguru.hackernews.network.NetworkCallback;
 import propertyguru.hackernews.network.NetworkStores;
@@ -69,16 +65,10 @@ public class NewsPresenter extends BasePresenter<NewsView> {
         }).concatMap(new Func1<Story, Observable<Story>>() {
             @Override
             public Observable<Story> call(Story post) {
-                //                        Log.d(Utils.TAG,post.toString());
                 return post.getTitle() != null ? Observable.just(post) : Observable.<Story> empty();
             }
         });
     }
 
-    void getItem(Story story, Activity activity) {
-        Intent intent = new Intent(activity, CommentsActivity.class);
-        intent.putExtra(CommentsActivity.EXTRA_STORY, story);
-        view.moveToDetail(intent);
-    }
 
 }

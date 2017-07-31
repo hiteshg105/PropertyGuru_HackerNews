@@ -17,30 +17,37 @@ public class CommentsPresenter extends BasePresenter<CommentsView> {
 
     public CommentsPresenter(CommentsView baseView, NetworkStores apiStores) {
         super.attachView(baseView);
-        this.apiStores=apiStores;
+        this.apiStores = apiStores;
     }
 
     public void loadComments(final List<Long> commentIds) {
-        view.showLoading();
-        addSubscribe(getPostComments(commentIds, 0), new NetworkCallback<Comment>() {
 
-            @Override
-            public void onSuccess(Comment model) {
-                view.onDataSuccess(model);
-            }
+        if (commentIds != null) {
+            view.showLoading();
+            addSubscribe(getPostComments(commentIds, 0), new NetworkCallback<Comment>() {
 
-            @Override
-            public void onFailure(String message) {
+                @Override
+                public void onSuccess(Comment model) {
+                    view.onDataSuccess(model);
+                }
 
-                view.getDataFail(message);
-            }
+                @Override
+                public void onFailure(String message) {
 
-            @Override
-            public void onFinish() {
+                    view.getDataFail(message);
+                }
 
-                view.hideLoading();
-            }
-        });
+                @Override
+                public void onFinish() {
+
+                    view.hideLoading();
+                }
+            });
+        }
+        else{
+            view.getDataFail("No Comments !");
+        }
+
     }
 
     public Observable<Comment> getPostComments(final List<Long> commentIds, final int depth) {

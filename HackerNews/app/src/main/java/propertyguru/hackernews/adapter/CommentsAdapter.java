@@ -79,7 +79,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
         private void setCommentIndent(int depth) {
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)
                     mContainer.getLayoutParams();
-            float margin = Utils.convertPixelsToDp(depth * 40, mContext);
+            float margin = Utils.convertPixelsToDp(depth * 100, mContext);
             layoutParams.setMargins((int) margin, 0, 0, 0);
             mContainer.setLayoutParams(layoutParams);
         }

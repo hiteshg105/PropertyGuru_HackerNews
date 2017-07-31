@@ -1,6 +1,7 @@
 package propertyguru.hackernews;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +16,6 @@ import java.util.List;
 
 import propertyguru.hackernews.feature.comments.CommentsPresenter;
 import propertyguru.hackernews.feature.comments.CommentsView;
-import propertyguru.hackernews.model.Comment;
 import propertyguru.hackernews.network.NetworkStores;
 import rx.Scheduler;
 import rx.android.plugins.RxAndroidPlugins;
@@ -33,10 +33,10 @@ import static org.mockito.Mockito.times;
 public class CommentsPresenterTest {
 
     @Mock
-    private NetworkStores apiStores;
+    private NetworkStores     apiStores;
 
     @Mock
-    private CommentsView commentsView;
+    private CommentsView      commentsView;
 
     private CommentsPresenter commentsPresenter;
 
@@ -90,7 +90,6 @@ public class CommentsPresenterTest {
     public void fetchValidDataShouldLoadIntoView() {
 
         List<Long> commentIds = new ArrayList<>();
-        Comment comment= new Comment();
         commentsPresenter.loadComments(commentIds);
         InOrder inOrder = Mockito.inOrder(commentsView);
         inOrder.verify(commentsView, times(1)).showLoading();
@@ -107,4 +106,12 @@ public class CommentsPresenterTest {
         inOrder.verify(commentsView, times(1)).hideLoading();
 
     }
+
+    @Test
+    public void detachViewTest() {
+        commentsPresenter.detachView();
+        Assert.assertNull(commentsPresenter.view);
+    }
+
+
 }

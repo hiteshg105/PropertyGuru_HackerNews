@@ -9,12 +9,12 @@ import java.util.List;
 public class Comment {
 
     public String text;
-    public Long time;
+    public long time;
     public String by;
-    public Long id;
+    public long id;
     public String type;
     public List<Long> kids;
-
+    public int depth = 0;
     public String getText() {
         return text;
     }
@@ -23,7 +23,7 @@ public class Comment {
         this.text = text;
     }
 
-    public Long getTime() {
+    public long getTime() {
         return time;
     }
 
@@ -39,7 +39,7 @@ public class Comment {
         this.by = by;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -71,5 +71,5 @@ public class Comment {
         this.depth = depth;
     }
 
-    public int depth = 0;
+
 }

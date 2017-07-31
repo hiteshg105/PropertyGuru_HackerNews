@@ -3,26 +3,29 @@ package propertyguru.hackernews.base.mvp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import propertyguru.hackernews.base.ui.BaseActivity;
+import propertyguru.hackernews.base.ui.BaseFragment;
 import propertyguru.hackernews.base.ui.BasePresenter;
 
 /**
  * Created by hitesh on 6/21/17.
  */
 
-public abstract class MVPActivity<P extends BasePresenter> extends BaseActivity {
+public abstract class MvpFragment<P extends BasePresenter> extends BaseFragment {
     protected P presenter;
 
-    protected abstract P createPresenter();
+    public abstract P createPresenter();
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        presenter = createPresenter();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter = createPresenter();
+
+
     }
 
+
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         if (presenter != null) {
             presenter.detachView();
